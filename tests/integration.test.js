@@ -39,7 +39,7 @@ describe('Account class', () => {
     const account = new Account()
     account.deposit(250)
     account.withdraw(200)
-    expect(account.printStatement()).toEqual([
+    expect(account.createStatement()).toEqual([
       "date || credit || debit || balance",
       "21-05-2023 || 250.00 ||  || 250.00",
       "21-05-2023 ||  || 200.00 || 50.00"

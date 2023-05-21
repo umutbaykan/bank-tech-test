@@ -25,12 +25,14 @@ class Account{
     this.logs.push(log)
   }
 
-  printStatement = () => {
+  createStatement = () => {
     const printOutput = ["date || credit || debit || balance"]
     this.logs.forEach(log => printOutput.push(log.print()))
-    printOutput.forEach(line => console.log(line))
-    // Output is returned to be able to test print output
     return printOutput
+  }
+
+  printStatement = () => {
+    console.log(this.createStatement().forEach(line => console.log(line)))
   }
 
   parseInput = (input) => {
