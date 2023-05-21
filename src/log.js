@@ -7,7 +7,10 @@ class Log {
   }
 
   print = () => {
-    return `${this.formattedDate()} || ${this.credit} || ${this.debit} || ${this.balance}`
+    return `${this.formattedDate()} || `+
+    `${this.credit !== 0 ? this.credit.toFixed(2) : ""} || `+
+    `${this.debit !== 0 ? this.debit.toFixed(2) : ""} || `+
+    `${this.balance.toFixed(2)}`
   }
 
   formattedDate = () => {
