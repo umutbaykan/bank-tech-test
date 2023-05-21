@@ -5,10 +5,6 @@ describe("Account class", () => {
 
   beforeAll(() => {
     today = new Date().toISOString().slice(0, 10);
-    formattedDay = `${today.slice(8)}-${today.slice(5, 7)}-${today.slice(
-      0,
-      4
-    )}`;
   });
 
   test("logs the deposit log into the array of logs", () => {
