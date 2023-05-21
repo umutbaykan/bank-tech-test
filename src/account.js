@@ -3,7 +3,11 @@ const Log = require("./log");
 class Account {
   constructor(balance = 0) {
     this.logs = [];
-    this.balance = balance;
+    if (balance === 0) {
+      this.balance = 0;
+    } else {
+      this.balance = this.parseInput(balance);
+    }
   }
 
   deposit = (amount) => {
