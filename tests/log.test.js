@@ -21,6 +21,11 @@ describe ('Log class', () => {
     expect(log.print()).toEqual("01-06-2023 || 100.00 ||  || 500.00")
   })
 
+  test('prints the recorded log in the right format', () => {
+    log = new Log(testDate, 0, 100, 500)
+    expect(log.print()).toEqual("01-06-2023 ||  || 100.00 || 500.00")
+  })
+
   test('rounds the value if the input is a float with more than 2 digits after comma', () => {
     log = new Log(testDate, 100.589, 0, 512.123)
     expect(log.print()).toEqual("01-06-2023 || 100.59 ||  || 512.12")

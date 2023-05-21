@@ -1,7 +1,7 @@
 const Log = require('./log')
 
 class Account{
-  constructor(date=new Date(), balance=0) {
+  constructor(balance=0) {
     this.logs = []
     this.date = date
     this.balance = balance
@@ -9,16 +9,16 @@ class Account{
 
   deposit = (amount) => {
     this.balance += this.parseInput(amount)
-    this.createLog()
+    this.createLog(this.date, amount, 0, this.balance)
   }
 
   withdraw = (amount) => {
-    const filteredAmount = this.parseInput(amount)
-    if (filteredAmount > this.balance) {
+    const filteredInput = this.parseInput(amount)
+    if (filteredInput > this.balance) {
       throw new Error('Insufficient funds')
     } else {
-    this.balance -= filteredAmount }
-    this.createLog()
+    this.balance -= filteredInput }
+    this.createLog(this.date, 0, amount, this.balance)
   }
 
   createLog = (date, credit, debit, balance) => {

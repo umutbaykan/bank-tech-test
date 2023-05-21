@@ -78,6 +78,22 @@ describe('Account class', () => {
     })
   });
 
+  describe('deposit and withdrawal methods in sequence', () => {
+    test('reflect the accurate balance of the account after transactions', () => {
+      const newAccount = new Account()
+      newAccount.deposit(100.25)
+      newAccount.withdraw(60.45)
+      expect(newAccount.balance).toEqual(39.8)
+    })
+
+    test('logs the correct number of transactions in account logs array', () => {
+      const newAccount = new Account()
+      newAccount.deposit(100.25)
+      newAccount.withdraw(60.45)
+      expect(newAccount.logs.length).toEqual(2)
+    })
+  })
+
   describe('parse input', () => {
     test('throws error if user tries to deposit an amount <= 0', () => {
       expect(() => account.parseInput(-1)).toThrow('Invalid input')
@@ -97,6 +113,14 @@ describe('Account class', () => {
 
     test('throws error if user tries to input object value', () => {
       expect(() => account.parseInput({})).toThrow('Invalid input')
+    })
+  })
+
+  describe('create log method', () => {
+    test('creates a log object and pushes into the account logs array', () => {
+      account.createLog(testDate, 10, 0 , 20)
+      account.createLog(testDate, 10, 0 , 20)
+      expect(account.logs.length).toEqual(2)
     })
   })
 })
