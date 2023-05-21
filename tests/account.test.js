@@ -25,6 +25,20 @@ describe('Account class', () => {
 
     test('throws error if user tries to deposit an amount <= 0', () => {
       expect(() => account.deposit(-1)).toThrow('Invalid input')
+    });
+
+    test('throws error if user tries to input non-numeric value', () => {
+      expect(() => account.deposit("somevalue")).toThrow('Invalid input')
+    })
+  })
+
+  describe('parse input', () => {
+    test('throws error if user tries to deposit an amount <= 0', () => {
+      expect(() => account.parseInput(-1)).toThrow('Invalid input')
+    });
+
+    test('throws error if user tries to input non-numeric value', () => {
+      expect(() => account.parseInput("somevalue")).toThrow('Invalid input')
     })
   })
 })

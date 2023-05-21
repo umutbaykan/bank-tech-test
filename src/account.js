@@ -1,3 +1,5 @@
+const Log = require('./log')
+
 class Account{
   constructor(date=new Date()) {
     this.logs = []
@@ -6,10 +8,14 @@ class Account{
   }
 
   deposit = (amount) => {
-    if (amount <= 0) {
+    this.balance += this.parseInput(amount)
+  }
+
+  parseInput = (input) => {
+    if (input <= 0 || isNaN(input)) {
       throw new Error('Invalid input')
     }
-    this.balance += amount
+    return input
   }
 }
 
