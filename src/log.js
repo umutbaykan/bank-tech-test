@@ -1,9 +1,9 @@
 class Log {
-  constructor(date, credit, debit, balance) {
-    this.date = date
+  constructor(credit, debit, balance, date=new Date()) {
     this.credit = credit
     this.debit = debit
     this.balance = balance
+    this.date = date
   }
 
   print = () => {

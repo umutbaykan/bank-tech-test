@@ -9,7 +9,7 @@ describe ('Log class', () => {
   })
   
   test('is initiated with the date, credit (or) debit and balance settings', () => {
-    log = new Log(testDate, 100, 0, 500)
+    log = new Log(100, 0, 500, testDate)
     expect(log.credit).toEqual(100)
     expect(log.balance).toEqual(500)
     expect(log.debit).toEqual(0)
@@ -17,17 +17,17 @@ describe ('Log class', () => {
   })
 
   test('prints the recorded log in the right format', () => {
-    log = new Log(testDate, 100, 0, 500)
+    log = new Log(100, 0, 500, testDate)
     expect(log.print()).toEqual("01-06-2023 || 100.00 ||  || 500.00")
   })
 
   test('prints the recorded log in the right format', () => {
-    log = new Log(testDate, 0, 100, 500)
+    log = new Log(0, 100, 500, testDate)
     expect(log.print()).toEqual("01-06-2023 ||  || 100.00 || 500.00")
   })
 
   test('rounds the value if the input is a float with more than 2 digits after comma', () => {
-    log = new Log(testDate, 100.589, 0, 512.123)
+    log = new Log(100.589, 0, 512.123, testDate)
     expect(log.print()).toEqual("01-06-2023 || 100.59 ||  || 512.12")
   })
 })

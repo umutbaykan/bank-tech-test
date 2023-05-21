@@ -2,18 +2,15 @@ const Account = require('../src/account')
 
 describe('Account class', () => {
 
-  let testDate;
   let account;
 
   beforeEach(() => {
-    testDate = new Date('2023-06-01')
-    account = new Account(testDate)
+    account = new Account()
   })
 
   test('is initiated with an empty array of logs and a balance of 0', () => {
-    const newAccount = new Account(testDate)
+    const newAccount = new Account()
     expect(newAccount.logs).toEqual([])
-    expect(newAccount.date).toEqual(testDate)
     expect(newAccount.balance).toEqual(0)
   })
 
@@ -47,24 +44,24 @@ describe('Account class', () => {
 
   describe('withdrawal method', () => {
     test('decreases balance by deposit amount', () => {
-      const newAccount = new Account(testDate, 500)
+      const newAccount = new Account(500)
       newAccount.withdraw(100)
       expect(newAccount.balance).toEqual(400)
     });
 
     test('decreases balance by deposit amount with float inputs', () => {
-      const newAccount = new Account(testDate, 500.51)
+      const newAccount = new Account(500.51)
       newAccount.withdraw(100.24)
       expect(newAccount.balance).toEqual(400.27)
     });
 
     test('throws an insufficent funds error if user does not have enough money', () => {
-      const newAccount = new Account(testDate, 500)
+      const newAccount = new Account(500)
       expect(() => newAccount.withdraw(600)).toThrow('Insufficient funds')
     })
 
     test('throws error if user tries to input non-numeric value', () => {
-      const newAccount = new Account(testDate, 500)
+      const newAccount = new Account(500)
       expect(() => newAccount.withdraw("somevalue")).toThrow('Invalid input')
       expect(() => newAccount.withdraw(true)).toThrow('Invalid input')
       expect(() => newAccount.withdraw([100])).toThrow('Invalid input')
@@ -72,7 +69,7 @@ describe('Account class', () => {
     })
 
     test('adds a log object to the logs once operation is complete', () => {
-      const newAccount = new Account(testDate, 500)
+      const newAccount = new Account(500)
       newAccount.withdraw(100)
       expect(newAccount.logs.length).toEqual(1)
     })
@@ -118,8 +115,8 @@ describe('Account class', () => {
 
   describe('create log method', () => {
     test('creates a log object and pushes into the account logs array', () => {
-      account.createLog(testDate, 10, 0 , 20)
-      account.createLog(testDate, 10, 0 , 20)
+      account.createLog(10, 0 , 20)
+      account.createLog(10, 0 , 20)
       expect(account.logs.length).toEqual(2)
     })
   })
