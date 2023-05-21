@@ -1,46 +1,52 @@
-const Log = require('./log')
+const Log = require("./log");
 
-class Account{
-  constructor(balance=0) {
-    this.logs = []
-    this.balance = balance
+class Account {
+  constructor(balance = 0) {
+    this.logs = [];
+    this.balance = balance;
   }
 
   deposit = (amount) => {
-    this.balance += this.parseInput(amount)
-    this.createLog(amount, 0, this.balance)
-  }
+    this.balance += this.parseInput(amount);
+    this.createLog(amount, 0, this.balance);
+  };
 
   withdraw = (amount) => {
-    const filteredInput = this.parseInput(amount)
+    const filteredInput = this.parseInput(amount);
     if (filteredInput > this.balance) {
-      throw new Error('Insufficient funds')
+      throw new Error("Insufficient funds");
     } else {
-    this.balance -= filteredInput }
-    this.createLog(0, amount, this.balance)
-  }
+      this.balance -= filteredInput;
+    }
+    this.createLog(0, amount, this.balance);
+  };
 
   createLog = (credit, debit, balance) => {
-    const log = new Log(credit, debit, balance)
-    this.logs.push(log)
-  }
+    const log = new Log(credit, debit, balance);
+    this.logs.push(log);
+  };
 
   createStatement = () => {
-    const printOutput = ["date || credit || debit || balance"]
-    this.logs.forEach(log => printOutput.push(log.print()))
-    return printOutput
-  }
+    const printOutput = ["date || credit || debit || balance"];
+    this.logs.forEach((log) => printOutput.push(log.print()));
+    return printOutput;
+  };
 
   printStatement = () => {
-    console.log(this.createStatement().forEach(line => console.log(line)))
-  }
+    console.log(this.createStatement().forEach((line) => console.log(line)));
+  };
 
   parseInput = (input) => {
-    if (input <= 0 || Array.isArray(input) || typeof input === 'boolean' || isNaN(input)) {
-      throw new Error('Invalid input')
+    if (
+      input <= 0 ||
+      Array.isArray(input) ||
+      typeof input === "boolean" ||
+      isNaN(input)
+    ) {
+      throw new Error("Invalid input");
     }
-    return input
-  }
+    return input;
+  };
 }
 
-module.exports = Account
+module.exports = Account;
