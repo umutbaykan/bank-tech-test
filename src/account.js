@@ -25,6 +25,14 @@ class Account{
     this.logs.push(log)
   }
 
+  printStatement = () => {
+    const printOutput = ["date || credit || debit || balance"]
+    this.logs.forEach(log => printOutput.push(log.print()))
+    printOutput.forEach(line => console.log(line))
+    // Output is returned to be able to test print output
+    return printOutput
+  }
+
   parseInput = (input) => {
     if (input <= 0 || Array.isArray(input) || typeof input === 'boolean' || isNaN(input)) {
       throw new Error('Invalid input')
