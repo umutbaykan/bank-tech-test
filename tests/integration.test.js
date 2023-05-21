@@ -38,7 +38,6 @@ describe("Account class", () => {
     account.deposit(250);
     account.withdraw(200);
     expect(account.createStatement()).toEqual([
-      "date || credit || debit || balance",
       "21-05-2023 || 250.00 ||  || 250.00",
       "21-05-2023 ||  || 200.00 || 50.00",
     ]);

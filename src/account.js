@@ -31,12 +31,11 @@ class Account {
   };
 
   createStatement = () => {
-    const printOutput = ["date || credit || debit || balance"];
-    this.logs.forEach((log) => printOutput.push(log.print()));
-    return printOutput;
+    return this.logs.map((log) => log.print());
   };
 
   printStatement = () => {
+    console.log("date || credit || debit || balance");
     console.log(this.createStatement().forEach((line) => console.log(line)));
   };
 

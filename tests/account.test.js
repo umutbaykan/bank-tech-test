@@ -96,7 +96,6 @@ describe("Account class", () => {
     const fakeLog_2 = { print: () => "11-06-2023 || 100.00 ||  || 600.00" };
     newAccount.logs.push(fakeLog_1, fakeLog_2);
     expect(newAccount.createStatement()).toEqual([
-      "date || credit || debit || balance",
       "01-06-2023 ||  || 100.00 || 500.00",
       "11-06-2023 || 100.00 ||  || 600.00",
     ]);
