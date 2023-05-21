@@ -2,9 +2,11 @@ const Account = require("../src/account");
 
 describe("Account class", () => {
   let today;
+  let formattedToday;
 
   beforeAll(() => {
     today = new Date().toISOString().slice(0, 10);
+    formattedToday = `${today.slice(8)}-${today.slice(5, 7)}-${today.slice(0, 4)}`;
   });
 
   test("logs the deposit log into the array of logs", () => {
@@ -38,8 +40,8 @@ describe("Account class", () => {
     account.deposit(250);
     account.withdraw(200);
     expect(account.createStatement()).toEqual([
-      "21-05-2023 || 250.00 ||  || 250.00",
-      "21-05-2023 ||  || 200.00 || 50.00",
+      `${formattedToday} || 250.00 ||  || 250.00`,
+      `${formattedToday} ||  || 200.00 || 50.00`,
     ]);
   });
 
@@ -62,8 +64,8 @@ describe("Account class", () => {
     account.printStatement();
     expect(consoleLogs).toEqual([
       "date || credit || debit || balance",
-      "21-05-2023 || 250.00 ||  || 250.00",
-      "21-05-2023 ||  || 200.00 || 50.00",
+      `${formattedToday} || 250.00 ||  || 250.00`,
+      `${formattedToday} ||  || 200.00 || 50.00`,
     ]);
     console.log = originalConsoleLog;
   });
