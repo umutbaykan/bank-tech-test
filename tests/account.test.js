@@ -45,6 +45,39 @@ describe('Account class', () => {
     })
   })
 
+  describe('withdrawal method', () => {
+    test('decreases balance by deposit amount', () => {
+      const newAccount = new Account(testDate, 500)
+      newAccount.withdraw(100)
+      expect(newAccount.balance).toEqual(400)
+    });
+
+    test('decreases balance by deposit amount with float inputs', () => {
+      const newAccount = new Account(testDate, 500.51)
+      newAccount.withdraw(100.24)
+      expect(newAccount.balance).toEqual(400.27)
+    });
+
+    test('throws an insufficent funds error if user does not have enough money', () => {
+      const newAccount = new Account(testDate, 500)
+      expect(() => newAccount.withdraw(600)).toThrow('Insufficient funds')
+    })
+
+    test('throws error if user tries to input non-numeric value', () => {
+      const newAccount = new Account(testDate, 500)
+      expect(() => newAccount.withdraw("somevalue")).toThrow('Invalid input')
+      expect(() => newAccount.withdraw(true)).toThrow('Invalid input')
+      expect(() => newAccount.withdraw([100])).toThrow('Invalid input')
+      expect(() => newAccount.withdraw({})).toThrow('Invalid input')
+    })
+
+    test('adds a log object to the logs once operation is complete', () => {
+      const newAccount = new Account(testDate, 500)
+      newAccount.withdraw(100)
+      expect(newAccount.logs.length).toEqual(1)
+    })
+  });
+
   describe('parse input', () => {
     test('throws error if user tries to deposit an amount <= 0', () => {
       expect(() => account.parseInput(-1)).toThrow('Invalid input')

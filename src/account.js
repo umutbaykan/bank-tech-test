@@ -12,6 +12,15 @@ class Account{
     this.createLog()
   }
 
+  withdraw = (amount) => {
+    const filteredAmount = this.parseInput(amount)
+    if (filteredAmount > this.balance) {
+      throw new Error('Insufficient funds')
+    } else {
+    this.balance -= filteredAmount }
+    this.createLog()
+  }
+
   createLog = (date, credit, debit, balance) => {
     const log = new Log(date, credit, debit, balance)
     this.logs.push(log)
