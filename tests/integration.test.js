@@ -45,4 +45,23 @@ describe('Account class', () => {
       "21-05-2023 ||  || 200.00 || 50.00"
     ])
   })
+
+  test('logs the statements on the terminal', () => {
+    const account = new Account()
+    account.deposit(250)
+    account.withdraw(200)
+
+    const consoleLogs = [];
+    const originalConsoleLog = console.log
+    console.log = (message) => {
+      consoleLogs.push(message);
+    };
+
+    account.printStatement()
+    expect(consoleLogs).toEqual([
+      "date || credit || debit || balance",
+      "21-05-2023 || 250.00 ||  || 250.00",
+      "21-05-2023 ||  || 200.00 || 50.00"]);
+    console.log = originalConsoleLog
+  })
 })
