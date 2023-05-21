@@ -43,6 +43,11 @@ describe("Account class", () => {
     ]);
   });
 
+  test("prints an empty array if there are no transactions", () => {
+    const account = new Account();
+    expect(account.createStatement()).toEqual([]);
+  });
+
   test("logs the statements on the terminal", () => {
     const account = new Account();
     account.deposit(250);
@@ -60,6 +65,20 @@ describe("Account class", () => {
       "21-05-2023 || 250.00 ||  || 250.00",
       "21-05-2023 ||  || 200.00 || 50.00",
     ]);
+    console.log = originalConsoleLog;
+  });
+
+  test("logs just the header if there are no statements when printed", () => {
+    const account = new Account();
+
+    const consoleLogs = [];
+    const originalConsoleLog = console.log;
+    console.log = (message) => {
+      consoleLogs.push(message);
+    };
+
+    account.printStatement();
+    expect(consoleLogs).toEqual(["date || credit || debit || balance"]);
     console.log = originalConsoleLog;
   });
 });

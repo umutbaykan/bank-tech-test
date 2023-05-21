@@ -7,10 +7,23 @@ describe("Account class", () => {
     account = new Account();
   });
 
-  test("is initiated with an empty array of logs and a balance of 0", () => {
-    const newAccount = new Account();
-    expect(newAccount.logs).toEqual([]);
-    expect(newAccount.balance).toEqual(0);
+  describe("upon initiation", () => {
+    test("is initiated with an empty array of logs and a balance of 0", () => {
+      const newAccount = new Account();
+      expect(newAccount.logs).toEqual([]);
+      expect(newAccount.balance).toEqual(0);
+    });
+
+    test("throws an error if is initatied with a negative balance", () => {
+      expect(() => new Account(-100)).toThrow("Invalid input");
+    });
+
+    test("throws an error if is initatied with an invalid input", () => {
+      expect(() => new Account("somevalue")).toThrow("Invalid input");
+      expect(() => new Account(true)).toThrow("Invalid input");
+      expect(() => new Account([100])).toThrow("Invalid input");
+      expect(() => new Account({})).toThrow("Invalid input");
+    });
   });
 
   describe("deposit method", () => {
