@@ -32,16 +32,19 @@ account = new Account(500)
 Once your account object is created, you can invoke these methods on it:
 
 - Deposit
+
 Pass in the amount you want to deposit as a variable to the method. Only accepts positive numeric numbers and will throw errors otherwise.
 ```node
 account.deposit(100)
 ```
 - Withdraw
+
 Pass in the amount you would like to withdraw as a variable to the method. Only accepts positive numeric numbers and will throw errors otherwise. Also, if you try to withdraw more than your existing balance, it will throw an insufficient funds error
 ```node
 account.withdraw(100)
 ```
 - Create Statement
+
 Will prepare a formatted array of recorded transactions that you made. Format will follow the same as the requirements outlined in the brief. Will return an empty array if there are no logs of transactions. This method can be merged into print statement if needed. 
 ```node
 account.deposit(100)
@@ -54,6 +57,7 @@ account.createStatement()
 ]
 ```
 - Print Statement
+
 Will print the statements made on the account line by line in the format set out by the brief in the console. It will print at the beginning of the list as well. Will print only the header if there are no statements made.
 ```node
 account.deposit(100)
