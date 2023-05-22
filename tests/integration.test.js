@@ -40,8 +40,8 @@ describe("Account class", () => {
     account.deposit(250);
     account.withdraw(200);
     expect(account.createStatement()).toEqual([
-      `${formattedToday} || 250.00 ||  || 250.00`,
       `${formattedToday} ||  || 200.00 || 50.00`,
+      `${formattedToday} || 250.00 ||  || 250.00`
     ]);
   });
 
@@ -50,7 +50,7 @@ describe("Account class", () => {
     expect(account.createStatement()).toEqual([]);
   });
 
-  test("logs the statements on the terminal", () => {
+  test("logs the statements on the terminal in reverse order", () => {
     const account = new Account();
     account.deposit(250);
     account.withdraw(200);
@@ -64,8 +64,8 @@ describe("Account class", () => {
     account.printStatement();
     expect(consoleLogs).toEqual([
       "date || credit || debit || balance",
-      `${formattedToday} || 250.00 ||  || 250.00`,
       `${formattedToday} ||  || 200.00 || 50.00`,
+      `${formattedToday} || 250.00 ||  || 250.00`
     ]);
     console.log = originalConsoleLog;
   });

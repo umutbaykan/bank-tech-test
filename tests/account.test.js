@@ -105,12 +105,14 @@ describe("Account class", () => {
 
   test("displays the logs of transcations in the correct format", () => {
     const newAccount = new Account();
-    const fakeLog_1 = { print: () => "01-06-2023 ||  || 100.00 || 500.00" };
-    const fakeLog_2 = { print: () => "11-06-2023 || 100.00 ||  || 600.00" };
-    newAccount.logs.push(fakeLog_1, fakeLog_2);
+    const fakeLog_1 = { print: () => "10-01-2023 || 1000.00 || || 1000.00" };
+    const fakeLog_2 = { print: () => "13-01-2023 || 2000.00 || || 3000.00" };
+    const fakeLog_3 = { print: () => "14-01-2023 || || 500.00 || 2500.00" };
+    newAccount.logs.push(fakeLog_1, fakeLog_2, fakeLog_3);
     expect(newAccount.createStatement()).toEqual([
-      "01-06-2023 ||  || 100.00 || 500.00",
-      "11-06-2023 || 100.00 ||  || 600.00",
+      "14-01-2023 || || 500.00 || 2500.00",
+      "13-01-2023 || 2000.00 || || 3000.00",
+      "10-01-2023 || 1000.00 || || 1000.00",
     ]);
   });
 

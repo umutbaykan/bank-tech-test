@@ -31,7 +31,7 @@ class Account {
   };
 
   createStatement = () => {
-    return this.logs.map((log) => log.print());
+    return this.logs.map((log) => log.print()).reverse();
   };
 
   printStatement = () => {
